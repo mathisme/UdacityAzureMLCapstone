@@ -63,13 +63,28 @@ classification task, data being the training set, label column name being DEATH_
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
+The top performing model was a VotingEnsemble with 88% accuracy.  
+
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
 ### Model
 
-### Hyperparameters chosen
+As the task is binary classification, I chose to use Scikit-Learn's logistic regression for hyperparameter tuning.  I have used logistic regression before in machine learning courses and am more familiar with it than other supervised learning classification algorithms.
+
+### Hyperparameters chosen to tune
+The parameters I chose to tune are
+C: the inverse of the regularization strength
+solver: what algorithm is used for optimization
+max_iter: max number of iterations to take for the solver to converge
+
+// why only these three?
+// may want to look back to your project 1 for this
+// go over what types of values it takes (discrete choices like solver or more continuous), what the defaults are, and what options you allowed
 
 ### Settings
+
+
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
