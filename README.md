@@ -99,7 +99,7 @@ max_iter: max number of iterations to take for the solver to converge
 // Be sure to include a screenshot of the endpoint
 
 ## Screen Recording
-
+https://youtu.be/wbC8YtjXAx4
 
 ## Suggestions
 
