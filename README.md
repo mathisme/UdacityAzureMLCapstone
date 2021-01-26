@@ -1,8 +1,5 @@
 Need to Include
 
-
--- An overview of the method used to get the data into your Azure ML Studio workspace.
--- An overview of your AutoML experiment settings and configuration
 -- An overview of the types of parameters and their ranges used for the hyperparameter search
 -- An overview of the two models with the best parameters
 -- An overview of the deployed model and instructions on how to query the endpoint with a sample input
@@ -48,22 +45,29 @@ To reduce the time taken to train, experiment_timeout_minutes of 30 and 50 itera
 
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-
-The top performing model was a VotingEnsemble with 88% accuracy.  
+As can be seen in the Run Details screenshot, the top performing model was a VotingEnsemble with 88% accuracy.  
 
 #### Screenshots: Run Details
+
+The below screenshot shows the rundetails widgit showing the run is completed and the top 5 performing models
 ![Run details showing the run completed](Screenshots/automl/rundetails1.PNG)
+
+The plot below shows graphs the various accuracies observed during the run.  Most runs registered between 80 and 90 percent accuracy.
 ![Continuation of run details, accuracy plot](Screenshots/automl/rundetails2.PNG)
 
 #### Screenshots: Model
+
+The screenshot below shows the run information, including the run id and the top part of the model description
 ![Showing run id and top of model data](Screenshots/automl/modelandrun.PNG)
+
+Here is a screenshot showing all of the description of the top performing model
 ![Complete model data](Screenshots/automl/model2.PNG)
 
+The model performed with 88% accuracy.
+![Accuracy of model](Screenshots/automl/accuracy.PNG)
+
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
 ### Model
 
