@@ -13,13 +13,13 @@ Need to Include
 
 ## Project Overview 
 
-For Udacity's Machine Learning Engineer with Microsoft Azure Nanodegree capstone project we had to 
+For Udacity's Machine Learning Engineer with Microsoft Azure Nanodegree capstone project we had to choose a dataset, task, and metric for a machine learning problem, do training with both Azure Hyperdrive and AutoML, register the best models from each, deploy the best performing of the two models, and consume the endpoint.
 
 ## Dataset
 
 ### Overview
 
-The dataset used is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the daasets, this one was of particular interest due to having a family history of heart disease.
+The dataset I chose is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the daasets, this one was of particular interest due to having a family history of heart disease.
 
 The dataset is comprised of 299 records of heart failure patients with 13 attributes and no missing values.  All attributes are numeric consisting of both continuous and discrete values.  
 
@@ -65,6 +65,14 @@ classification task, data being the training set, label column name being DEATH_
 
 The top performing model was a VotingEnsemble with 88% accuracy.  
 
+#### Screenshots: Run Details
+![Run details showing the run completed](Screenshots/automl/rundetails1.PNG)
+![Continuation of run details, accuracy plot](Screenshots/automl/rundetails2.PNG)
+
+#### Screenshots: Model
+![Showing run id and top of model data](Screenshots/automl/modelandrun.PNG)
+![Complete model data](Screenshots/automl/model2.PNG)
+
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
@@ -91,12 +99,34 @@ max_iter: max number of iterations to take for the solver to converge
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
+#### Screenshots: Run Details
+![Run Details showing completed run](Screenshots/hyperdrive/rundetails1.PNG)
+![Run Details showing the top models](Screenshots/hyperdrive/rundetails2.PNG)
+![Run Details Accuracy Graph](Screenshots/hyperdrive/rundetails3.PNG)
+![Run Details Parallel Coordinates Chart](Screenshots/hyperdrive/rundetails4.PNG)
+
+#### Screenshots: Model
+
+![Best run and associated model](Screenshots/hyperdrive/bestmodelandrun.PNG)
+
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 // Be sure to state which model is deployed
 
 // Be sure to include a screenshot of the endpoint
+
+### Screenshots: Endpoint In Active State
+![The endpoint tab on Azure showing my endpoint](Screenshots/endpoint1.PNG)
+![The endpoint showing a healthy state](Screenshots/endpoint2.PNG)
+
+### Screenshots: Swagger Schema for Endpoint
+![Swagger schema for post request](Screenshots/swagger2.PNG)
+
+
+// may want to include the url screenshot
+
+### Call to endpoint
 
 ## Screen Recording
 https://youtu.be/wbC8YtjXAx4
