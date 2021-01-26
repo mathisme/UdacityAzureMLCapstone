@@ -143,13 +143,13 @@ The screenshot below shows the run information, including run id, hyperparameter
 
 ### Call to endpoint
 
+// include screenshot of call
+
 ## Screen Recording
 
 [https://youtu.be/wbC8YtjXAx4](https://youtu.be/wbC8YtjXAx4)
 
 ## Suggestions
-
-// put in order of what you want to do right away
 
 * Require authentication to access the endpoint
 To avoid attacks against the endpoint, authorization should be required.
