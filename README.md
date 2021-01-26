@@ -74,33 +74,55 @@ The model performed with 88% accuracy.
 As the task is binary classification, I chose to use Scikit-Learn's logistic regression for hyperparameter tuning.  I have used logistic regression before in machine learning courses and am more familiar with it than other supervised learning classification algorithms.
 
 ### Hyperparameters chosen to tune
-The parameters I chose to tune are
-C: the inverse of the regularization strength
-solver: what algorithm is used for optimization
-max_iter: max number of iterations to take for the solver to converge
 
-// why only these three?
-// may want to look back to your project 1 for this
-// go over what types of values it takes (discrete choices like solver or more continuous), what the defaults are, and what options you allowed
+The parameters I chose to tune are 
+C: the inverse of the regularization strength; 
+solver: what algorithm is used for optimization; 
+and, max_iter: max number of iterations to take for the solver to converge.
+
+C has a default value of 1. For the sampler I used the discrete option 'choice' with 1 multiplied and divided by two powers of 10.  Choice was used instead of a continuous sampler to ensure a large variation in the possible regularization strengths used.  
+
+For solver, all possible solver arguments were included in the sample space with the exception of newton-cg as newton-cg can be time consuming. 
+
+Max_iter has a default value of 100. For the sample space I used choice from 50 to 200 in incriments of 25.  Less than 50 iterations may not allow for the convergence of the cost function to a minimum while more than 200 iterations I feel would not be necessary.
+
+These three parameters were chosen for tuning as other parameters relied on which solver was used.
 
 ### Settings
 
+RandomParameterSampling was chosen instead of Grid as it uses less time and resources and produces almost as good hyperparameters as using Grid. 
+A MedianStoppingPolicy was chosen with an evaluation_interval of 1 and delay_evaluation of 5 as this is a conservative policy without loss on the primary metric, according to Microsoft documentation. 
+The training is done on the local compute target. 
+Accuracy was chosen as the primary metric (although thinking back I should have used recall) with a goal to maximize accuracy. 
+To keep training short, max_total_runs was set to 50 and max_duration_minutes was set to 30.
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+From the hyperdrive run the best model scored accuracy of 81% with hyperparameter values of C: 1, max_iter: 50, and solver: lbfgs.
 
 #### Screenshots: Run Details
+
+Below shows the screenshot of Run Details widget showing the run as completed.
 ![Run Details showing completed run](Screenshots/hyperdrive/rundetails1.PNG)
+
+The following screenshot lists the top 5 models all having accuracy of greater than or equal to 80%.
 ![Run Details showing the top models](Screenshots/hyperdrive/rundetails2.PNG)
+
+The screenshot below displays the accuracy of the runs.  Accuracy was split into two groups, one group being between 73 and 82 percent, the other group having accuracy below 66%.  This may be due to the median stopping policy.
 ![Run Details Accuracy Graph](Screenshots/hyperdrive/rundetails3.PNG)
+
+The following screenshot displays performance of various hyperparameter configurations.  Most configurations performed the same with the exception of the one having a C value of 0.01
 ![Run Details Parallel Coordinates Chart](Screenshots/hyperdrive/rundetails4.PNG)
 
 #### Screenshots: Model
 
+The screenshot below shows the run information, including run id, hyperparameter values and accuracy of the best model.
 ![Best run and associated model](Screenshots/hyperdrive/bestmodelandrun.PNG)
+
+
+
+# need to finish
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
@@ -122,7 +144,8 @@ max_iter: max number of iterations to take for the solver to converge
 ### Call to endpoint
 
 ## Screen Recording
-https://youtu.be/wbC8YtjXAx4
+
+[https://youtu.be/wbC8YtjXAx4](https://youtu.be/wbC8YtjXAx4)
 
 ## Suggestions
 
