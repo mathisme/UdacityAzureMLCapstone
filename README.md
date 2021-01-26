@@ -29,26 +29,21 @@ The dataset was used for supervised learning binary classification with DEATH_EV
 
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
-// for both hyperdrive and automl
-In both notebooks the dataset was read in using Dataset.Tabular.from_delimited_files using the url of that dataset at the UCI machine learning repository site.
-It was then registered in Azure if it hadn't been already.
-// talk about train test split
 
-Fot hyperdrive, the train.py file reads the data in the same way, converts it to a pandas dataframe, pops Death Event off and splits it into a training and test set 
-// want to say using same random seed
+In both notebooks the dataset was read in using Dataset.Tabular.from_delimited_files using the url of that dataset at the UCI machine learning repository site and then registered in Azure if it hadn't been already.
 
-// need to say what is done with the training set for automl
+For AutoML the dataset is then converted to a pandas dataframe and split into a train and test set.  The training set is then written to a file and then read into a tabular dataset to send to the experiment using Dataset.Tabular.from_delimited_files.
+The training set is used for automl training.
+After training the test set is split into x_test and y_test for testing.
+Finally during deployment, the first two rows of the test set, excluding DEATH_EVENT, are sent to the endpoint for prediction.
+
+For hyperdrive, the train.py file reads the data in using the url, as was originally done before registering, converts it to a pandas dataframe, pops Death Event off and splits it into x and y training and test sets using the same random seed as was used in the automl notebook. 
+The x_train and y_train are used to fit the logistic regression model and the x_test and y_test are used to compute accuracy.
 
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
-Experiment timeout 30 minutes
-The training was done remotely
-Primary metric of accuracy // why
-5 cross validations // why
-early stopping enabled // need to read more about this.  What is early sopping
-classification task, data being the training set, label column name being DEATH_EVENT
+
+To reduce the time taken to train, experiment_timeout_minutes of 30 and 50 iterations were chosen. In order to utilize more than one node at once, since 4 where allocated, max_concurrent_iterations were set to 4. Early stopping is enabled so if a run is not performing well, it can stop early, again to save time and if not performing well continuing seems uncessary. The local compute was chosen as this may be slower but generally provides better results. Also 5 cross validations were chosen to split the data into 80%/20% train and test sets and help balance variance and bias.
 
 
 
