@@ -1,6 +1,6 @@
 Need to Include
--- An overview of the project
--- An overview of the dataset used
+
+
 -- An overview of the method used to get the data into your Azure ML Studio workspace.
 -- An overview of your AutoML experiment settings and configuration
 -- An overview of the types of parameters and their ranges used for the hyperparameter search
@@ -19,20 +19,14 @@ For Udacity's Machine Learning Engineer with Microsoft Azure Nanodegree capstone
 
 ### Overview
 
-The dataset I chose is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the daasets, this one was of particular interest due to having a family history of heart disease.
+The dataset I chose is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project, I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the daasets, this one was of particular interest due to having a family history of heart disease.
 
 The dataset is comprised of 299 records of heart failure patients with 13 attributes and no missing values.  All attributes are numeric consisting of both continuous and discrete values.  
 
-// the variable of interest is DEATH_EVENT
-
-
-
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
 
-// explain how doctors could use this.
-Upon predicting of a possible death event, doctors may want to call patients in for a further checkup or switch medications or dosages
-// what else? ^
+The dataset was used for supervised learning binary classification with DEATH_EVENT column being the target.  Death event is a boolean value with 0 being there was no death before the follow up and 1, there was a death event. Upon predicting of a possible death event, doctors may want to call patients in for a further checkup or switch medications or dosages.  All parameters were used during training.
+
 
 ### Access
 *TODO*: Explain how you are accessing the data in your workspace.
@@ -147,6 +141,10 @@ Other than using every attribute, an exploratory data analysis with feature sele
 * Hyperdrive: Save the training set to storage so train.py doesn't split it every call
 
 * Hyperdrive: Test the model before registering it
+Being uncertain of how to retrieve the model from a hyperdrive run before registering it, no testing of the model was done.  It is always a good idea to test the model before registering, as was done with Auto ML.  I need to research how to retrieve the model so it can be tested. 
+
 * AutomatedML: Enable the use of deep neural networks
-* Create a swagger schema
+For greater variety, usage of deep neural networks should be enabled.
+
 * Enable Application Insights
+In order to examine the usage and performance of the endpoint, application insighs should be enabled.
