@@ -16,7 +16,7 @@ For Udacity's Machine Learning Engineer with Microsoft Azure Nanodegree capstone
 
 ### Overview
 
-The dataset I chose is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project, I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the daasets, this one was of particular interest due to having a family history of heart disease.
+The dataset I chose is the Heart Failure clinical records Data Set that can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records) at the UCI Machine Learning repository.  For the project, I was browsing the UCI machine learning repository for datasets to use as these sets are smaller than ones found on other sites such as data.gov.  After looking through the datasets, this one was of particular interest due to having a family history of heart disease.
 
 The dataset is comprised of 299 records of heart failure patients with 13 attributes and no missing values.  All attributes are numeric consisting of both continuous and discrete values.  
 
@@ -29,12 +29,13 @@ The dataset was used for supervised learning binary classification with DEATH_EV
 
 In both notebooks the dataset was read in using Dataset.Tabular.from_delimited_files using the url of that dataset at the UCI machine learning repository site and then registered in Azure if it hadn't been already.
 
-For AutoML the dataset is then converted to a pandas dataframe and split into a train and test set.  The training set is then written to a file and then read into a tabular dataset to send to the experiment using Dataset.Tabular.from_delimited_files.
+For AutoML the dataset is then converted to a pandas dataframe and split into a train and test set.  The training set is then written to a file and  read into a tabular dataset to send to the experiment using Dataset.Tabular.from_delimited_files.
 The training set is used for automl training.
 After training the test set is split into x_test and y_test for testing.
 Finally during deployment, the first two rows of the test set, excluding DEATH_EVENT, are sent to the endpoint for prediction.
 
-For hyperdrive, the train.py file reads the data in using the url, as was originally done before registering, converts it to a pandas dataframe, pops Death Event off and splits it into x and y training and test sets using the same random seed as was used in the automl notebook. 
+For hyperdrive, the train.py file reads the data in using the url, as was originally done before registering. Then the dataset is converted to a Pandas dataframe, Death Event is popped off and the dataset is split into x and y training and test sets using the same random seed as was used in the automl notebook. 
+
 The x_train and y_train are used to fit the logistic regression model and the x_test and y_test are used to compute accuracy.
 
 
@@ -61,7 +62,7 @@ The plot below shows graphs the various accuracies observed during the run.  Mos
 The screenshot below shows the run information, including the run id and the top part of the model description
 ![Showing run id and top of model data](Screenshots/automl/modelandrun.PNG)
 
-Here is a screenshot showing all of the description of the top performing model
+Here is a screenshot showing the entire description of the top performing model
 ![Complete model data](Screenshots/automl/model2.PNG)
 
 The model performed with 88% accuracy.
@@ -120,11 +121,12 @@ The following screenshot displays performance of various hyperparameter configur
 The screenshot below shows the run information, including run id, hyperparameter values and accuracy of the best model.
 ![Best run and associated model](Screenshots/hyperdrive/bestmodelandrun.PNG)
 
-
-
-# need to finish
-
 ## Model Deployment
+
+With the automl model having accuracy of 88% compared to the hyperdrive model accuracy of 81%, this mode was chosen for deployment.
+
+
+
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 // Be sure to state which model is deployed
@@ -132,16 +134,20 @@ The screenshot below shows the run information, including run id, hyperparameter
 // Be sure to include a screenshot of the endpoint
 
 ### Screenshots: Endpoint In Active State
+
+Screenshot showing the endpoints section of Azure ML Studio
 ![The endpoint tab on Azure showing my endpoint](Screenshots/endpoint1.PNG)
+
+Screenshot showing the endpoint as active
 ![The endpoint showing a healthy state](Screenshots/endpoint2.PNG)
 
 ### Screenshots: Swagger Schema for Endpoint
 ![Swagger schema for post request](Screenshots/swagger2.PNG)
+The above screen shows the required json format for a post request.
 
-
-// may want to include the url screenshot
-
-### Call to endpoint
+### Screenshots: URL
+![Endpoint URL](Screenshots/url.PNG)
+The above screenshot shows the url for querying the endpoint.
 
 // include screenshot of call
 
