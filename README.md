@@ -123,15 +123,21 @@ The screenshot below shows the run information, including run id, hyperparameter
 
 ## Model Deployment
 
-With the automl model having accuracy of 88% compared to the hyperdrive model accuracy of 81%, this mode was chosen for deployment.
+With the automl model having accuracy of 88% compared to the hyperdrive model accuracy of 81%, this model was chosen for deployment.
 
+After saving the environment and dowloading the scoring script used during training, the model was deployed locally.  I decided to first deploy locally so that if deployment failed, debugging would be easier.
+Then the model was deployed as a webservice using Azure Container Instances.
 
+In order to use the service, the request must be sent in json format to the url (see screenshot below).
 
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+From the scoring file you can see the data types expected for each value:
+> input_sample = pd.DataFrame({"age": pd.Series([0.0], dtype="float64"), "anaemia": pd.Series([0], dtype="int64"), "creatinine_phosphokinase": pd.Series([0], dtype="int64"), "diabetes": pd.Series([0], dtype="int64"), "ejection_fraction": pd.Series([0], dtype="int64"), "high_blood_pressure": pd.Series([0], dtype="int64"), "platelets": pd.Series([0.0], dtype="float64"), "serum_creatinine": pd.Series([0.0], dtype="float64"), "serum_sodium": pd.Series([0], dtype="int64"), "sex": pd.Series([0], dtype="int64"), "smoking": pd.Series([0], dtype="int64"), "time": pd.Series([0], dtype="int64")})
+> output_sample = np.array([0])
 
-// Be sure to state which model is deployed
+The json format for the data can be seen in the Swagger schema (see screenshot below).
+Authentication is not required.
 
-// Be sure to include a screenshot of the endpoint
+To test deployment, I took the first two rows of the test set, excluding DEATH_EVENT, and sent it to the endpoint.  The result prediction for both was 0, meaning false, no predicted death before follow up.
 
 ### Screenshots: Endpoint In Active State
 
@@ -143,13 +149,16 @@ Screenshot showing the endpoint as active
 
 ### Screenshots: Swagger Schema for Endpoint
 ![Swagger schema for post request](Screenshots/swagger2.PNG)
-The above screen shows the required json format for a post request.
+The above screen shows the required json format for a post request. 
 
 ### Screenshots: URL
 ![Endpoint URL](Screenshots/url.PNG)
 The above screenshot shows the url for querying the endpoint.
 
-// include screenshot of call
+### Screenshot: Call to endpoint and result
+![Endpoint query](Screenshots/requestoutput.PNG)
+The above screenshot shows the data being sent, the request, and the result.
+Just a note, in my notebook the reason the json.dumps was commented out was because this was already done when testing local deployment. 
 
 ## Screen Recording
 
@@ -165,8 +174,6 @@ With DEATH_EVENT being the y value, recall should be used as the primary metric 
 
 * Hyperdrive: Exploratory data analysis and feature selection
 Other than using every attribute, an exploratory data analysis with feature selection prior to training would improve the HyperDrive performance.  Having taken a course in linear regression, I know how to determine what features to include or exclude for linear regression models.  However I am presently uncertain how to do feature selection for classificcation problems.  
-
-* Hyperdrive: Save the training set to storage so train.py doesn't split it every call
 
 * Hyperdrive: Test the model before registering it
 Being uncertain of how to retrieve the model from a hyperdrive run before registering it, no testing of the model was done.  It is always a good idea to test the model before registering, as was done with Auto ML.  I need to research how to retrieve the model so it can be tested. 
